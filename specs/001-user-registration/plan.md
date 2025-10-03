@@ -31,7 +31,7 @@
 - Phase 3-4: Implementation execution (manual or via tools)
 
 ## Summary
-Build a user registration system for a multi-user todo application with email/password authentication, JWT tokens, real-time validation, and automatic login. The system will use React 19 with TypeScript, Vite 7, and Tailwind CSS v4 for the frontend, with a Node.js backend using JWT authentication and secure password hashing.
+Build a user registration system for a multi-user todo application with email/password authentication, JWT tokens, real-time validation, and automatic login. The system will use React 19 with TypeScript, Vite 7, and Tailwind CSS v4 for the frontend, with a Node.js backend using JWT authentication and secure password hashing. No email verification required for MVP.
 
 ## Technical Context
 **Language/Version**: TypeScript 5.0+, Node.js 18+  

@@ -78,13 +78,14 @@ A new user needs to create an account for the multi-user todo application by pro
 - **FR-002**: System MUST validate email format (proper email structure)
 - **FR-003**: System MUST validate password strength (8+ characters, 1 uppercase, 1 lowercase, 1 number, 1 special character)
 - **FR-004**: System MUST prevent duplicate email registrations
-- **FR-005**: System MUST provide clear error messages for invalid inputs
-- **FR-006**: System MUST provide clear error messages for duplicate emails
+- **FR-005**: System MUST provide clear error messages for invalid inputs with specific field names and correction guidance (e.g., "Email must be a valid format like user@example.com")
+- **FR-006**: System MUST provide clear error messages for duplicate emails with actionable guidance (e.g., "An account with this email already exists. Try logging in or use a different email")
 - **FR-007**: System MUST generate JWT token upon successful registration
 - **FR-008**: System MUST store user credentials securely (hashed passwords)
-- **FR-009**: System MUST handle registration form validation in real-time
+- **FR-009**: System MUST handle registration form validation in real-time with the following timing: email validation on blur (when user leaves field), password validation on change (as user types), with 300ms debounce to prevent excessive validation calls
 - **FR-010**: System MUST redirect users to dashboard after successful registration
 - **FR-011**: System MUST automatically log in users after successful registration
+- **FR-012**: System MUST display error messages in real-time as users type, with clear visual indicators (red border, error icon, descriptive text)
 
 ### Key Entities *(include if feature involves data)*
 - **User**: Represents a user account with email, hashed password, and creation timestamp
@@ -94,7 +95,7 @@ A new user needs to create an account for the multi-user todo application by pro
 ### Session 2025-01-27
 - Q: What are the minimum password strength requirements? → A: 8+ characters, 1 uppercase, 1 lowercase, 1 number, 1 special character
 - Q: Should there be rate limiting on registration attempts? → A: No rate limiting needed for MVP
-- Q: Where should users be redirected after successful registration? → A: Remove email verification requirement
+- Q: Should there be email verification for signups? → A: No email verification needed for MVP - users are automatically logged in after registration
 
 ---
 
