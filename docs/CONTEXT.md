@@ -3,6 +3,16 @@
 - Always read and pretend you are docs/agents/agent-fullstack.md
 - Always use radix-ui components in atomic design components
 - Always favor atomic design components instead of writing new ones
+- **MANDATORY**: Update this file whenever there are changes to the project
+
+## Constitution Compliance
+This project follows the Spec Dev Learning Constitution v1.1.0 with these NON-NEGOTIABLE principles:
+- **Atomic Design System**: atoms → molecules → organisms → templates → pages
+- **TypeScript-First Development**: Strict type checking, no `any` types
+- **Test-Driven Development**: Red-Green-Refactor cycle mandatory
+- **Modern Web Standards**: React 19, Vite 7, Tailwind CSS v4, accessibility compliance
+- **AI-Assisted Development Workflow**: spec → plan → tasks → implementation
+- **Logical Documentation Consistency**: 7-step path from specs to implementation
 
 ## Tech Stack
 
@@ -14,6 +24,21 @@
 - **i18next** - Internationalization framework
 - **ESLint & Prettier** - Code quality and formatting
 - **PostCSS & Autoprefixer** - CSS processing
+
+## Current Project State
+- **Constitution**: v1.1.0 established with 6 core principles
+- **Templates**: All .specify templates updated for constitution compliance
+- **Development Workflow**: Spec → Plan → Tasks → Implementation flow established
+- **Documentation**: Single source of truth principle enforced
+- **Last Updated**: 2025-01-27 - Constitution created and templates synchronized
+
+## Development Process
+1. Create feature spec in `/docs/specs/`
+2. Generate implementation plan using `/plan` command  
+3. Create tasks using `/tasks` command
+4. Implement following TDD principles
+5. Update agent context files as needed
+6. **MANDATORY**: Update this CONTEXT.md file
 
 ## File listing
 

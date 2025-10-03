@@ -77,6 +77,16 @@
 - [ ] .specify template system followed
 - [ ] spec → plan → tasks → implementation flow maintained
 
+### Logical Documentation Consistency
+- [ ] Feature spec in `docs/specs/` describes function needed
+- [ ] TypeScript types in `src/types/` for data items
+- [ ] OpenAPI spec in `docs/specs/openapi/` using the types
+- [ ] Database implementation in `src/server/` matches types
+- [ ] Server implementation in `src/server/` matches OpenAPI spec
+- [ ] Client uses types and API for backend communication
+- [ ] Client implements user flows from Gherkin scenarios
+- [ ] Single source of truth maintained (no duplicate content)
+
 ## Project Structure
 
 ### Documentation (this feature)

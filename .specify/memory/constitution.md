@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-Version change: 0.0.0 → 1.0.0
+Version change: 0.0.0 → 1.1.0
 Modified principles: N/A (initial creation)
-Added sections: Atomic Design System, AI-Assisted Development, Modern Web Standards
+Added sections: Atomic Design System, AI-Assisted Development, Modern Web Standards, Logical Documentation Consistency
 Removed sections: N/A
 Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
 Follow-up TODOs: None
@@ -26,6 +26,18 @@ MUST use React 19, Vite 7, Tailwind CSS v4, and latest TypeScript. Performance t
 
 ### V. AI-Assisted Development Workflow
 Specs MUST be written before implementation. Use provided agent personas (Archimedes fullstack) for system design. Follow the .specify template system for consistency. All features MUST go through spec → plan → tasks → implementation flow.
+
+### VI. Logical Documentation Consistency (NON-NEGOTIABLE)
+LOGIC DICTATES this path must be followed for all features:
+1. `docs/specs/` - Describe the function needed
+2. `src/types/` - TypeScript types for data items needed for that functionality  
+3. `docs/specs/openapi/` - Endpoints needed using the types
+4. `src/server/` - Database implementation matching the types
+5. `src/server/` - Server implementation matching the OpenAPI spec
+6. `src/client/` - Use types and API to communicate with backend
+7. `src/client/` - Implement user flows from Gherkin scenarios
+
+Only ONE document can be the source of truth for any given information. Duplicate content MUST be eliminated through proper organization.
 
 ## Development Standards
 
@@ -58,7 +70,17 @@ Specs MUST be written before implementation. Use provided agent personas (Archim
 3. Create tasks using `/tasks` command
 4. Implement following TDD principles
 5. Update agent context files as needed
-6. Document changes in CONTEXT.md
+6. **MANDATORY**: Update `docs/CONTEXT.md` with all changes
+
+### Documentation Maintenance
+- `docs/CONTEXT.md` MUST be updated whenever:
+  - New features are added or modified
+  - Architecture decisions are made
+  - Dependencies change
+  - Development processes evolve
+  - Agent personas are updated
+- CONTEXT.md serves as the single source of truth for project state
+- All team members must reference CONTEXT.md for current project understanding
 
 ### Code Review Process
 - All PRs require approval from project maintainer
@@ -85,4 +107,4 @@ This constitution supersedes all other development practices. Amendments require
 
 All development work MUST verify compliance with these principles. Complexity beyond these standards MUST be justified with clear business value. Use `docs/CONTEXT.md` for runtime development guidance and `docs/agents/` for specific development approaches.
 
-**Version**: 1.0.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
+**Version**: 1.1.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
