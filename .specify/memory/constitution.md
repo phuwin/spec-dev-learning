@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-Version change: 0.0.0 → 1.1.0
+Version change: 0.0.0 → 1.2.0
 Modified principles: N/A (initial creation)
-Added sections: Atomic Design System, AI-Assisted Development, Modern Web Standards, Logical Documentation Consistency
+Added sections: Atomic Design System, AI-Assisted Development, Modern Web Standards, Logical Documentation Consistency, AI Agent Integration
 Removed sections: N/A
 Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
 Follow-up TODOs: None
@@ -107,4 +107,10 @@ This constitution supersedes all other development practices. Amendments require
 
 All development work MUST verify compliance with these principles. Complexity beyond these standards MUST be justified with clear business value. Use `docs/CONTEXT.md` for runtime development guidance and `docs/agents/` for specific development approaches.
 
-**Version**: 1.1.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
+## AI Agent Integration
+- `CLAUDE.md` file exists but points to the AI-agnostic `docs/CONTEXT.md` file
+- All AI agents MUST reference `docs/CONTEXT.md` as the single source of truth for project context
+- Agent-specific files in `docs/agents/` provide persona guidance but `CONTEXT.md` contains the authoritative project state
+- This ensures consistency across all AI tools and human developers
+
+**Version**: 1.2.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27

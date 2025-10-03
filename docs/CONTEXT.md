@@ -6,7 +6,7 @@
 - **MANDATORY**: Update this file whenever there are changes to the project
 
 ## Constitution Compliance
-This project follows the Spec Dev Learning Constitution v1.1.0 with these NON-NEGOTIABLE principles:
+This project follows the Spec Dev Learning Constitution v1.2.0 with these NON-NEGOTIABLE principles:
 - **Atomic Design System**: atoms → molecules → organisms → templates → pages
 - **TypeScript-First Development**: Strict type checking, no `any` types
 - **Test-Driven Development**: Red-Green-Refactor cycle mandatory
@@ -26,11 +26,12 @@ This project follows the Spec Dev Learning Constitution v1.1.0 with these NON-NE
 - **PostCSS & Autoprefixer** - CSS processing
 
 ## Current Project State
-- **Constitution**: v1.1.0 established with 6 core principles
+- **Constitution**: v1.2.0 established with 6 core principles + AI Agent Integration
 - **Templates**: All .specify templates updated for constitution compliance
 - **Development Workflow**: Spec → Plan → Tasks → Implementation flow established
 - **Documentation**: Single source of truth principle enforced
-- **Last Updated**: 2025-01-27 - Constitution created and templates synchronized
+- **AI Integration**: CLAUDE.md points to AI-agnostic CONTEXT.md for consistency
+- **Last Updated**: 2025-01-27 - Constitution updated with AI agent integration guidelines
 
 ## Development Process
 1. Create feature spec in `/docs/specs/`
