@@ -1,70 +1,74 @@
+/**
+ * Text Atom Component
+ * Reusable text component with consistent typography
+ */
+
 import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../utils/cn';
 
-type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
-type TextVariant = 'default' | 'muted' | 'danger' | 'success' | 'warning';
-type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
-type TextAlign = 'left' | 'center' | 'right';
+const textVariants = cva(
+  'text-foreground',
+  {
+    variants: {
+      variant: {
+        default: 'text-base',
+        small: 'text-sm',
+        large: 'text-lg',
+        xl: 'text-xl',
+        '2xl': 'text-2xl',
+        '3xl': 'text-3xl',
+        '4xl': 'text-4xl',
+        '5xl': 'text-5xl',
+        '6xl': 'text-6xl',
+      },
+      weight: {
+        normal: 'font-normal',
+        medium: 'font-medium',
+        semibold: 'font-semibold',
+        bold: 'font-bold',
+      },
+      color: {
+        default: 'text-foreground',
+        muted: 'text-muted-foreground',
+        destructive: 'text-destructive',
+        success: 'text-green-600',
+        warning: 'text-yellow-600',
+        info: 'text-blue-600',
+      },
+      align: {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      weight: 'normal',
+      color: 'default',
+      align: 'left',
+    },
+  }
+);
 
-interface TextProps {
-  size?: TextSize;
-  variant?: TextVariant;
-  weight?: TextWeight;
-  align?: TextAlign;
-  children: React.ReactNode;
-  className?: string;
-  as?: React.ElementType;
+export interface TextProps
+  extends React.HTMLAttributes<HTMLParagraphElement>,
+    VariantProps<typeof textVariants> {
+  as?: 'p' | 'span' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-const Text: React.FC<TextProps> = ({ 
-  size = 'base',
-  variant = 'default',
-  weight = 'normal',
-  align = 'left',
-  children, 
-  className = '',
-  as: Component = 'p'
-}) => {
-  // Use complete class names for Tailwind to detect them
-  const sizeClasses = {
-    'xs': 'text-xs',
-    'sm': 'text-sm',
-    'base': 'text-base',
-    'lg': 'text-lg',
-    'xl': 'text-xl',
-    '2xl': 'text-2xl',
-    '3xl': 'text-3xl',
-    '4xl': 'text-4xl',
-    '5xl': 'text-5xl'
-  };
+const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
+  ({ className, variant, weight, color, align, as = 'p', ...props }, ref) => {
+    const Component = as;
+    return (
+      <Component
+        className={cn(textVariants({ variant, weight, color, align, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Text.displayName = 'Text';
 
-  const variantClasses = {
-    'default': 'text-gray-900',
-    'muted': 'text-gray-500',
-    'danger': 'text-red-600',
-    'success': 'text-green-600',
-    'warning': 'text-yellow-600'
-  };
-
-  const weightClasses = {
-    'normal': 'font-normal',
-    'medium': 'font-medium',
-    'semibold': 'font-semibold',
-    'bold': 'font-bold'
-  };
-
-  const alignClasses = {
-    'left': 'text-left',
-    'center': 'text-center',
-    'right': 'text-right'
-  };
-
-  return (
-    <Component 
-      className={`${sizeClasses[size]} ${variantClasses[variant]} ${weightClasses[weight]} ${alignClasses[align]} ${className}`.trim()}
-    >
-      {children}
-    </Component>
-  );
-};
-
-export default Text;
+export { Text, textVariants };

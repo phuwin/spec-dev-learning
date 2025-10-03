@@ -1,8 +1,8 @@
 
-# Implementation Plan: User Registration
+# Implementation Plan: User Registration and Login
 
-**Branch**: `001-user-registration` | **Date**: 2025-01-27 | **Spec**: `/specs/001-user-registration/spec.md`
-**Input**: Feature specification from `/specs/001-user-registration/spec.md`
+**Branch**: `001-user-can-register` | **Date**: 2024-12-19 | **Spec**: [link]
+**Input**: Feature specification from `/specs/001-user-can-register/spec.md`
 
 ## Execution Flow (/plan command scope)
 ```
@@ -31,18 +31,18 @@
 - Phase 3-4: Implementation execution (manual or via tools)
 
 ## Summary
-Build a user registration system for a multi-user todo application with email/password authentication, JWT tokens, real-time validation, and automatic login. The system will use React 19 with TypeScript, Vite 7, and Tailwind CSS v4 for the frontend, with a Node.js backend using JWT authentication and secure password hashing. No email verification required for MVP.
+Frontend MVP for user registration and login with email/password authentication. No backend implementation - uses localStorage for mock authentication. Users can register new accounts, log in with existing credentials, and maintain sessions until explicit logout.
 
 ## Technical Context
-**Language/Version**: TypeScript 5.0+, Node.js 18+  
-**Primary Dependencies**: React 19, Vite 7, Tailwind CSS v4, Node.js, Express, JWT, bcrypt  
-**Storage**: Local database (SQLite for MVP)  
-**Testing**: Jest, React Testing Library, Supertest  
-**Target Platform**: Web application (browser-based)  
-**Project Type**: Web (frontend + backend)  
-**Performance Goals**: <200ms API response, <3s initial page load, <500KB bundle size  
-**Constraints**: MVP simplicity, no external services, built-in JWT tokens  
-**Scale/Scope**: Multi-user todo application, 100+ concurrent users
+**Language/Version**: TypeScript 5.0+ with React 19  
+**Primary Dependencies**: React 19, Vite 7, Tailwind CSS v4, Radix UI primitives  
+**Storage**: localStorage for user accounts and sessions  
+**Testing**: Vitest, React Testing Library, Jest  
+**Target Platform**: Web browsers (modern ES2020+)  
+**Project Type**: web (frontend-only MVP)  
+**Performance Goals**: <3s initial page load, <200ms form interactions  
+**Constraints**: No external dependencies, localStorage only, offline-capable  
+**Scale/Scope**: MVP for demonstration, single-page application
 
 ## Constitution Check
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
@@ -63,11 +63,11 @@ Build a user registration system for a multi-user todo application with email/pa
 - [x] TDD approach planned: Tests → User approval → Tests fail → Implementation
 - [x] Unit tests planned for every component
 - [x] Integration tests planned for user flows
-- [x] Contract tests planned for API boundaries
+- [x] Contract tests planned for API boundaries (frontend-only, localStorage contracts)
 
 ### Modern Web Standards
 - [x] React 19, Vite 7, Tailwind CSS v4, latest TypeScript specified
-- [x] Performance targets defined: <200ms API response, <3s page load
+- [x] Performance targets defined: <200ms form interactions, <3s page load
 - [x] Accessibility compliance (WCAG 2.1 AA) planned
 - [x] Responsive design for all screen sizes
 
@@ -80,10 +80,7 @@ Build a user registration system for a multi-user todo application with email/pa
 ### Logical Documentation Consistency
 - [x] Feature spec in `docs/specs/` describes function needed
 - [x] TypeScript types in `src/types/` for data items
-- [x] OpenAPI spec in `docs/specs/openapi/` using the types
-- [x] Database implementation in `src/server/` matches types
-- [x] Server implementation in `src/server/` matches OpenAPI spec
-- [x] Client uses types and API for backend communication
+- [x] Frontend contracts in `src/client/` for localStorage operations
 - [x] Client implements user flows from Gherkin scenarios
 - [x] Single source of truth maintained (no duplicate content)
 
@@ -102,45 +99,44 @@ specs/[###-feature]/
 
 ### Source Code (repository root)
 ```
-backend/
-├── src/
-│   ├── models/
-│   │   └── User.ts
-│   ├── services/
-│   │   └── authService.ts
-│   ├── api/
-│   │   └── authRoutes.ts
-│   └── middleware/
-│       └── authMiddleware.ts
-└── tests/
-    ├── contract/
-    ├── integration/
-    └── unit/
+src/
+├── components/
+│   ├── atoms/
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   ├── Label.tsx
+│   │   └── Text.tsx
+│   ├── molecules/
+│   │   ├── FormField.tsx
+│   │   └── Card.tsx
+│   ├── organisms/
+│   │   ├── LoginForm.tsx
+│   │   ├── RegisterForm.tsx
+│   │   └── AuthLayout.tsx
+│   └── pages/
+│       ├── LoginPage.tsx
+│       ├── RegisterPage.tsx
+│       └── DashboardPage.tsx
+├── services/
+│   ├── authService.ts
+│   └── localStorageService.ts
+├── types/
+│   ├── auth.ts
+│   └── user.ts
+└── utils/
+    ├── validation.ts
+    └── constants.ts
 
-frontend/
-├── src/
+tests/
+├── unit/
 │   ├── components/
-│   │   ├── atoms/
-│   │   │   ├── Button.tsx
-│   │   │   ├── Input.tsx
-│   │   │   └── Label.tsx
-│   │   ├── molecules/
-│   │   │   └── RegistrationForm.tsx
-│   │   └── organisms/
-│   │       └── RegistrationPage.tsx
-│   ├── pages/
-│   │   └── RegistrationPage.tsx
 │   ├── services/
-│   │   └── authService.ts
-│   └── types/
-│       └── auth.ts
-└── tests/
-    ├── contract/
-    ├── integration/
-    └── unit/
+│   └── utils/
+└── integration/
+    └── auth-flows.test.ts
 ```
 
-**Structure Decision**: Web application structure with separate frontend and backend directories. Frontend uses atomic design principles with existing component structure, backend follows MVC pattern with clear separation of concerns.
+**Structure Decision**: Frontend-only MVP using existing project structure. Components follow atomic design hierarchy. Services handle localStorage operations. Types define data structures. Tests cover unit and integration scenarios.
 
 ## Phase 0: Outline & Research
 1. **Extract unknowns from Technical Context** above:
@@ -207,27 +203,12 @@ frontend/
 - Each user story → integration test task
 - Implementation tasks to make tests pass
 
-**Specific Tasks to Generate**:
-1. **Contract Tests** [P]: Create failing tests for register API endpoint
-2. **Data Model** [P]: Create User entity with TypeScript interfaces
-3. **Backend Setup**: Express server with auth routes
-4. **Database Setup**: SQLite schema and migrations
-5. **Auth Service**: JWT token generation and password hashing
-6. **API Implementation**: Register endpoint with validation
-7. **Frontend Types**: TypeScript interfaces for API communication
-8. **Form Components**: Registration form with atomic design
-9. **Validation Logic**: Real-time form validation
-10. **API Integration**: Frontend service for registration
-11. **Error Handling**: User-friendly error messages
-12. **Integration Tests**: End-to-end registration flow
-13. **Documentation**: Update README and API docs
-
 **Ordering Strategy**:
 - TDD order: Tests before implementation 
 - Dependency order: Models before services before UI
 - Mark [P] for parallel execution (independent files)
 
-**Estimated Output**: 15-20 numbered, ordered tasks in tasks.md
+**Estimated Output**: 25-30 numbered, ordered tasks in tasks.md
 
 **IMPORTANT**: This phase is executed by the /tasks command, NOT by /plan
 
@@ -254,7 +235,7 @@ frontend/
 - [x] Phase 0: Research complete (/plan command)
 - [x] Phase 1: Design complete (/plan command)
 - [x] Phase 2: Task planning complete (/plan command - describe approach only)
-- [ ] Phase 3: Tasks generated (/tasks command)
+- [x] Phase 3: Tasks generated (/tasks command)
 - [ ] Phase 4: Implementation complete
 - [ ] Phase 5: Validation passed
 

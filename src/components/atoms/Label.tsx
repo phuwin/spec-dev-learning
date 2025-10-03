@@ -1,28 +1,28 @@
+/**
+ * Label Atom Component
+ * Reusable label component built on Radix UI primitives
+ */
+
 import React from 'react';
+import * as LabelPrimitive from '@radix-ui/react-label';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../utils/cn';
 
-interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  required?: boolean;
-}
-
-const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
-  ({ className = '', required = false, children, ...props }, ref) => {
-    return (
-      <label
-        ref={ref}
-        className={`
-          text-sm font-medium text-gray-700
-          peer-disabled:opacity-50
-          ${className}
-        `}
-        {...props}
-      >
-        {children}
-        {required && <span className="text-red-500 ml-1">*</span>}
-      </label>
-    );
-  }
+const labelVariants = cva(
+  'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
 );
 
-Label.displayName = 'Label';
+const Label = React.forwardRef<
+  React.ElementRef<typeof LabelPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &
+    VariantProps<typeof labelVariants>
+>(({ className, ...props }, ref) => (
+  <LabelPrimitive.Root
+    ref={ref}
+    className={cn(labelVariants(), className)}
+    {...props}
+  />
+));
+Label.displayName = LabelPrimitive.Root.displayName;
 
-export default Label;
+export { Label };
