@@ -6,13 +6,14 @@
 - **MANDATORY**: Update this file whenever there are changes to the project
 
 ## Constitution Compliance
-This project follows the Spec Dev Learning Constitution v1.2.0 with these NON-NEGOTIABLE principles:
+This project follows the Spec Dev Learning Constitution v1.3.0 with these NON-NEGOTIABLE principles:
 - **Atomic Design System**: atoms → molecules → organisms → templates → pages
 - **TypeScript-First Development**: Strict type checking, no `any` types
 - **Test-Driven Development**: Red-Green-Refactor cycle mandatory
 - **Modern Web Standards**: React 19, Vite 7, Tailwind CSS v4, accessibility compliance
 - **AI-Assisted Development Workflow**: spec → plan → tasks → implementation
 - **Logical Documentation Consistency**: 7-step path from specs to implementation
+- **MVP Simplicity**: Minimize third-party dependencies, prefer built-in solutions
 
 ## Tech Stack
 
@@ -25,13 +26,24 @@ This project follows the Spec Dev Learning Constitution v1.2.0 with these NON-NE
 - **ESLint & Prettier** - Code quality and formatting
 - **PostCSS & Autoprefixer** - CSS processing
 
+## MVP Constraints
+Following the MVP Simplicity principle, avoid these external services initially:
+- **Authentication**: Use JWT tokens instead of OAuth providers
+- **Email**: Use simple SMTP or skip email features
+- **Real-time**: Use WebSocket connections instead of third-party services
+- **Storage**: Use local database instead of cloud storage
+- **Notifications**: In-app only, no external push services
+- **File Upload**: Local file storage, no cloud providers
+- **Analytics**: Simple logging instead of external analytics
+
 ## Current Project State
-- **Constitution**: v1.2.0 established with 6 core principles + AI Agent Integration
+- **Constitution**: v1.3.0 established with 7 core principles including MVP Simplicity
 - **Templates**: All .specify templates updated for constitution compliance
 - **Development Workflow**: Spec → Plan → Tasks → Implementation flow established
 - **Documentation**: Single source of truth principle enforced
 - **AI Integration**: CLAUDE.md points to AI-agnostic CONTEXT.md for consistency
-- **Last Updated**: 2025-01-27 - Constitution updated with AI agent integration guidelines
+- **MVP Approach**: Minimize external dependencies, prefer built-in solutions
+- **Last Updated**: 2025-01-27 - Constitution updated with MVP simplicity constraints
 
 ## Development Process
 1. Create feature spec in `/docs/specs/`

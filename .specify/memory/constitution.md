@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-Version change: 0.0.0 → 1.2.0
+Version change: 0.0.0 → 1.3.0
 Modified principles: N/A (initial creation)
-Added sections: Atomic Design System, AI-Assisted Development, Modern Web Standards, Logical Documentation Consistency, AI Agent Integration
+Added sections: Atomic Design System, AI-Assisted Development, Modern Web Standards, Logical Documentation Consistency, AI Agent Integration, MVP Simplicity
 Removed sections: N/A
 Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
 Follow-up TODOs: None
@@ -39,6 +39,9 @@ LOGIC DICTATES this path must be followed for all features:
 
 Only ONE document can be the source of truth for any given information. Duplicate content MUST be eliminated through proper organization.
 
+### VII. MVP Simplicity (NON-NEGOTIABLE)
+MVP implementations MUST minimize third-party service dependencies to reduce complexity and external failure points. Prefer built-in solutions over external services. When external services are unavoidable, they MUST be abstracted behind interfaces to enable easy replacement or removal. No external service should be a single point of failure for core functionality.
+
 ## Development Standards
 
 ### Code Quality
@@ -61,6 +64,15 @@ Only ONE document can be the source of truth for any given information. Duplicat
 - CSRF protection for state-changing operations
 - Secure authentication implementation
 - No sensitive data in client-side code
+
+### MVP Constraints
+- **Authentication**: Use built-in JWT tokens instead of external OAuth providers initially
+- **Email**: Use simple SMTP or skip email features for MVP
+- **Real-time**: Use WebSocket connections instead of third-party services
+- **Storage**: Use local database instead of cloud storage
+- **Notifications**: Use in-app notifications only, no external push services
+- **File Upload**: Use local file storage, no cloud storage providers
+- **Analytics**: Use simple logging instead of external analytics services
 
 ## Development Workflow
 
@@ -113,4 +125,4 @@ All development work MUST verify compliance with these principles. Complexity be
 - Agent-specific files in `docs/agents/` provide persona guidance but `CONTEXT.md` contains the authoritative project state
 - This ensures consistency across all AI tools and human developers
 
-**Version**: 1.2.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
+**Version**: 1.3.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
