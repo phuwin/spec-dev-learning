@@ -36,7 +36,7 @@
 - **Mandatory sections**: Must be completed for every feature
 - **Optional sections**: Include only when relevant to the feature
 - When a section doesn't apply, remove it entirely (don't leave as "N/A")
-- **Constitution compliance**: All specs MUST align with Atomic Design System, TypeScript-first development, and TDD principles
+- **Constitution compliance**: All specs MUST align with Atomic Design System and TypeScript-first development principles
 
 ### For AI Generation
 When creating this spec from a user prompt:
@@ -95,7 +95,7 @@ When creating this spec from a user prompt:
 - [ ] All mandatory sections completed
 - [ ] Aligns with Atomic Design System principles
 - [ ] Considers TypeScript type safety requirements
-- [ ] Includes testable user scenarios for TDD approach
+- [ ] Includes testable user scenarios for validation
 
 ### Requirement Completeness
 - [ ] No [NEEDS CLARIFICATION] markers remain

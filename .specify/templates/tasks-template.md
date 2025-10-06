@@ -48,14 +48,13 @@
 - [ ] T003 [P] Configure ESLint, Prettier, and TypeScript strict mode
 - [ ] T004 [P] Set up Radix UI primitives and atomic design structure
 
-## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
-**CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
-- [ ] T005 [P] Unit test atoms components in tests/unit/components/atoms/
-- [ ] T006 [P] Unit test molecules components in tests/unit/components/molecules/
-- [ ] T007 [P] Integration test user flows in tests/integration/user-flows/
-- [ ] T008 [P] Contract test API endpoints in tests/contract/api/
+## Phase 3.2: Testing Setup
+- [ ] T005 [P] Set up testing framework and configuration
+- [ ] T006 [P] Create test utilities and helpers
+- [ ] T007 [P] Set up unit test structure for components
+- [ ] T008 [P] Set up integration test structure for user flows
 
-## Phase 3.3: Core Implementation (ONLY after tests are failing)
+## Phase 3.3: Core Implementation
 - [ ] T009 [P] Create atoms components in src/components/atoms/
 - [ ] T010 [P] Create molecules components in src/components/molecules/
 - [ ] T011 [P] Create organisms components in src/components/organisms/
@@ -79,7 +78,6 @@
 - [ ] T025 [P] Manual testing checklist completion
 
 ## Dependencies
-- Tests (T005-T008) before implementation (T009-T015)
 - T009 blocks T010, T011 (atoms before molecules before organisms)
 - T012 blocks T013 (types before services)
 - T016 blocks T017 (state before auth)
@@ -88,15 +86,14 @@
 ## Parallel Example
 ```
 # Launch T005-T008 together:
-Task: "Unit test atoms components in tests/unit/components/atoms/"
-Task: "Unit test molecules components in tests/unit/components/molecules/"
-Task: "Integration test user flows in tests/integration/user-flows/"
-Task: "Contract test API endpoints in tests/contract/api/"
+Task: "Set up testing framework and configuration"
+Task: "Create test utilities and helpers"
+Task: "Set up unit test structure for components"
+Task: "Set up integration test structure for user flows"
 ```
 
 ## Notes
 - [P] tasks = different files, no dependencies
-- Verify tests fail before implementing
 - Commit after each task
 - Avoid: vague tasks, same file conflicts
 
@@ -116,7 +113,7 @@ Task: "Contract test API endpoints in tests/contract/api/"
    - Quickstart scenarios → validation tasks
 
 4. **Ordering**:
-   - Setup → Tests → Models → Services → Endpoints → Polish
+   - Setup → Testing Setup → Models → Services → Endpoints → Polish
    - Dependencies block parallel execution
 
 ## Validation Checklist

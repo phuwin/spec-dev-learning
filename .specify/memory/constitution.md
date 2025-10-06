@@ -1,9 +1,9 @@
 <!--
 Sync Impact Report:
-Version change: 0.0.0 → 1.3.0
-Modified principles: N/A (initial creation)
-Added sections: Atomic Design System, AI-Assisted Development, Modern Web Standards, Logical Documentation Consistency, AI Agent Integration, MVP Simplicity
-Removed sections: N/A
+Version change: 1.4.0 → 1.5.0
+Modified principles: Test-Driven Development (removed TDD requirement)
+Added sections: None
+Removed sections: Test-Driven Development principle
 Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
 Follow-up TODOs: None
 -->
@@ -18,24 +18,25 @@ Every UI component MUST follow atomic design principles: atoms → molecules →
 ### II. TypeScript-First Development
 All code MUST be written in TypeScript with strict type checking enabled. No `any` types allowed without explicit justification. Interfaces MUST be defined for all data structures. Type safety is non-negotiable for maintainability and developer experience.
 
-### III. Test-Driven Development (NON-NEGOTIABLE)
-TDD mandatory: Tests written → User approved → Tests fail → Then implement. Red-Green-Refactor cycle strictly enforced. Every component MUST have unit tests. Integration tests required for user flows. Contract tests for API boundaries.
 
-### IV. Modern Web Standards
+### III. Modern Web Standards
 MUST use React 19, Vite 7, Tailwind CSS v4, and latest TypeScript. Performance targets: <200ms API response, <3s initial page load. Accessibility compliance (WCAG 2.1 AA) is mandatory. Responsive design for all screen sizes.
 
-### V. AI-Assisted Development Workflow
+### IV. AI-Assisted Development Workflow
 Specs MUST be written before implementation. Use provided agent personas (Archimedes fullstack) for system design. Follow the .specify template system for consistency. All features MUST go through spec → plan → tasks → implementation flow.
+
+### V. Frontend-Only Architecture (NON-NEGOTIABLE)
+This project is a frontend-only application with no backend requirements. All data persistence MUST use client-side storage (localStorage, IndexedDB, or similar). No server-side components, databases, or external APIs are permitted unless explicitly justified for MVP requirements.
 
 ### VI. Logical Documentation Consistency (NON-NEGOTIABLE)
 LOGIC DICTATES this path must be followed for all features:
-1. `docs/specs/` - Describe the function needed
+1. `specs/[feature-name]/` - Describe the function needed
 2. `src/types/` - TypeScript types for data items needed for that functionality  
-3. `docs/specs/openapi/` - Endpoints needed using the types
-4. `src/server/` - Database implementation matching the types
-5. `src/server/` - Server implementation matching the OpenAPI spec
-6. `src/client/` - Use types and API to communicate with backend
-7. `src/client/` - Implement user flows from Gherkin scenarios
+3. `specs/[feature-name]/contracts/` - Service contracts using the types
+4. `src/services/` - Local storage service implementation matching the types
+5. `src/services/` - Service implementation matching the contracts
+6. `src/components/` - Use types and services for data management
+7. `src/components/` - Implement user flows from Gherkin scenarios
 
 Only ONE document can be the source of truth for any given information. Duplicate content MUST be eliminated through proper organization.
 
@@ -65,22 +66,23 @@ MVP implementations MUST minimize third-party service dependencies to reduce com
 - Secure authentication implementation
 - No sensitive data in client-side code
 
-### MVP Constraints
-- **Authentication**: Use built-in JWT tokens instead of external OAuth providers initially
-- **Email**: Use simple SMTP or skip email features for MVP
-- **Real-time**: Use WebSocket connections instead of third-party services
-- **Storage**: Use local database instead of cloud storage
+### MVP Constraints (Frontend-Only)
+- **Authentication**: Use localStorage-based authentication, no external OAuth providers
+- **Email**: Skip email features for MVP (frontend-only)
+- **Real-time**: Use client-side state management, no WebSocket connections
+- **Storage**: Use localStorage or IndexedDB, no external databases
 - **Notifications**: Use in-app notifications only, no external push services
-- **File Upload**: Use local file storage, no cloud storage providers
-- **Analytics**: Use simple logging instead of external analytics services
+- **File Upload**: Use client-side file handling, no cloud storage providers
+- **Analytics**: Use simple console logging, no external analytics services
+- **APIs**: No external API calls unless absolutely necessary for core functionality
 
 ## Development Workflow
 
 ### Feature Development Process
-1. Create feature spec in `/docs/specs/`
+1. Create feature spec in `specs/[feature-name]/`
 2. Generate implementation plan using `/plan` command
 3. Create tasks using `/tasks` command
-4. Implement following TDD principles
+4. Implement following development standards
 5. Update agent context files as needed
 6. **MANDATORY**: Update `docs/CONTEXT.md` with all changes
 
@@ -125,4 +127,4 @@ All development work MUST verify compliance with these principles. Complexity be
 - Agent-specific files in `docs/agents/` provide persona guidance but `CONTEXT.md` contains the authoritative project state
 - This ensures consistency across all AI tools and human developers
 
-**Version**: 1.3.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
+**Version**: 1.5.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27

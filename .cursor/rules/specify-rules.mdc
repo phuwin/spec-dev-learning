@@ -6,6 +6,8 @@ Auto-generated from all feature plans. Last updated: 2025-10-03
 - TypeScript 5.0+, Node.js 18+ + React 19, Vite 7, Tailwind CSS v4, Node.js, Express, JWT, bcryp (001-user-registration)
 - TypeScript 5.0+ with React 19 + React 19, Vite 7, Tailwind CSS v4, Radix UI primitives (001-user-can-register)
 - localStorage for user accounts and sessions (001-user-can-register)
+- TypeScript 5.0+, React 19, Vite 7 + React, Tailwind CSS v4, Radix UI primitives, React Hook Form, Zod validation (002-build-a-workspace)
+- Local storage for MVP (no external database) (002-build-a-workspace)
 
 ## Project Structure
 ```
@@ -20,6 +22,7 @@ npm test [ONLY COMMANDS FOR ACTIVE TECHNOLOGIES][ONLY COMMANDS FOR ACTIVE TECHNO
 TypeScript 5.0+, Node.js 18+: Follow standard conventions
 
 ## Recent Changes
+- 002-build-a-workspace: Added TypeScript 5.0+, React 19, Vite 7 + React, Tailwind CSS v4, Radix UI primitives, React Hook Form, Zod validation
 - 001-user-can-register: Added TypeScript 5.0+ with React 19 + React 19, Vite 7, Tailwind CSS v4, Radix UI primitives
 - 001-user-registration: Added TypeScript 5.0+, Node.js 18+ + React 19, Vite 7, Tailwind CSS v4, Node.js, Express, JWT, bcryp
 
